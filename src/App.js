@@ -4,13 +4,15 @@ import file_upload from './files-and-folders-white.svg';
 import './App.css';
 import Dropzone from 'react-dropzone'
 
-
+function onDrop(droppedFiles) {
+  console.log(droppedFiles);
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+        <Dropzone onDrop={onDrop}>
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()}>
