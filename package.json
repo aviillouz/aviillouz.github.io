@@ -13,6 +13,7 @@
     "react-dom": "^16.13.1",
     "react-dropzone": "^10.2.2",
     "react-scripts": "3.4.1",
+    "react-table": "^7.0.4",
     "utf-8-validate": "^5.0.2"
   },
   "scripts": {
