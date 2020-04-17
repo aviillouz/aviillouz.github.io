@@ -4,7 +4,45 @@ import './App.css';
 import Dropzone from 'react-dropzone'
 import parquet from 'parquetjs';
 import { useTable } from 'react-table'
+import styled from 'styled-components'
 const fs = require('browserify-fs');
+
+
+const Styles = styled.div`
+  padding: 1rem;
+  table {
+    border-spacing: 0;
+    border: 1px solid black;
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+    th,
+    td {
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+      :last-child {
+        border-right: 0;
+      }
+    }
+    td {
+      input {
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+        border: 0;
+      }
+    }
+  }
+  .pagination {
+    padding: 0.5rem;
+  }
+`
 
 async function read(parquetFile) {
 
@@ -67,16 +105,6 @@ function Table({ columns, data }) {
   )
 }
 
-// async function onDrop(droppedFiles) {
-//   console.log('reading file ' + droppedFiles[0].path);
-//   records = await read(droppedFiles[0]);
-
-//   keys = Object.keys(records[0]).map(k => ({ 'Header': k, 'accessor': k }));
-//   console.log('columns ' + keys);
-//   console.log(records);
-
-// }
-
 class App extends React.Component {
 
   constructor(props) {
@@ -116,8 +144,10 @@ class App extends React.Component {
             )}
           </Dropzone>
         </header>
+        <Styles>
+          <Table columns={this.state.columns} data={this.state.data} />
 
-        <Table columns={this.state.columns} data={this.state.data} />
+        </Styles>
 
       </div>
     );
